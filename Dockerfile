@@ -18,3 +18,4 @@ RUN rm oci-cli-3.91.0.zip
 RUN rm -rf oci-cli-3.91.0
 RUN echo PATH=$PATH:/google-cloud-sdk/bin >>/etc/environment
 RUN apt clean
+RUN rm -rf /var/lib/apt/lists/*
