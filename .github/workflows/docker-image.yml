@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag hossted/publisher:${GITHUB_REF_NAME#v}
+    - name: logon to Docker
+      run: docker login -u hossted -p ${{ secrets.hossted_docker }}
+    - name: tag latest
+      run: docker tag hossted/publisher:${GITHUB_REF_NAME#v} hossted/publisher:latest
+    - name: pushing to Dockerhub
+      run: docker push hossted/publisher:${GITHUB_REF_NAME#v}
+    - name: pushing latest
+      run: docker push hossted/publisher:latest
