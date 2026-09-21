@@ -14,13 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: getting version tag
+      run: VERSION=`cat version.txt`
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hossted/publisher:${GITHUB_REF_NAME#v}
+      run: docker build . --file Dockerfile --tag hossted/publisher:${VERSION}
     - name: logon to Docker
       run: docker login -u hossted -p ${{ secrets.hossted_docker }}
     - name: tag latest
-      run: docker tag hossted/publisher:${GITHUB_REF_NAME#v} hossted/publisher:latest
+      run: docker tag hossted/publisher:${VERSION} hossted/publisher:latest
     - name: pushing to Dockerhub
-      run: docker push hossted/publisher:${GITHUB_REF_NAME#v}
+      run: docker push hossted/publisher:${VERSION}
     - name: pushing latest
       run: docker push hossted/publisher:latest
