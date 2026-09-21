@@ -1,13 +1,4 @@
 FROM debian:13-slim
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    iproute2 \
-    net-tools \
-    iputils-ping \
-    dnsutils \
-    curl \
-    traceroute \
-    tcpdump
 RUN apt-get update
 RUN apt -y install curl uuid-runtime jq git openssh-client wget unzip python3 python3.13-venv python3-pip wget awscli
 RUN wget assets.hossted.com/etcdctl 2>/dev/null
