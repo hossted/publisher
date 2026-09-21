@@ -16,7 +16,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: getting version tag
       run: VERSION=`cat version.txt`>> $GITHUB_ENV
-
+    - name: Use dynamic variable
+      run: echo "The version is $VERSION"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hossted/publisher:${VERSION}
     - name: logon to Docker
