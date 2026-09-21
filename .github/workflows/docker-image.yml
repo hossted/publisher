@@ -17,7 +17,7 @@ jobs:
     - name: showing version tag
       run: cat version.txt
     - name: getting version tag
-      run: VERSION=`cat version.txt`>> $GITHUB_ENV
+      run: echo VERSION=`cat version.txt`>> $GITHUB_ENV
     - name: Use dynamic variable
       run: echo "The version is $VERSION"
     - name: Build the Docker image
