@@ -22,4 +22,7 @@ RUN curl -fsSL 'https://azurecliprod.blob.core.windows.net/$root/deb_install.sh'
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
 RUN tar -xf google-cloud-cli-linux-x86_64.tar.gz
 RUN ./google-cloud-sdk/install.sh --quiet
+RUN rm -rf google-cloud-cli-linux-x86_64.tar.gz
+RUN rm https://github.com/oracle/oci-cli/releases/download/v3.91.0/oci-cli-3.91.0.zip
+RUN rm -rf oci-cli-3.91.0.zip
 RUN echo PATH=$PATH:/google-cloud-sdk/bin >>/etc/environment
