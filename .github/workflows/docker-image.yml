@@ -1,4 +1,4 @@
-name: Docker Image CI
+  name: Docker Image CI
 
 on:
   push:
@@ -14,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: getting version tag
+      run: cat version.txt
     - name: getting version tag
       run: VERSION=`cat version.txt`>> $GITHUB_ENV
     - name: Use dynamic variable
