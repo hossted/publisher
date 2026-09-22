@@ -17,7 +17,7 @@ jobs:
     - name: getting version tag
       run: echo VERSION=`cat version.txt`>> $GITHUB_ENV
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hossted/publisher:${VERSION}
+      run: docker build . --file Dockerfile --label org.opencontainers.image.version=${VERSION} --tag hossted/publisher:${VERSION}
     - name: logon to Docker
       run: docker login -u hossted -p ${{ secrets.hossted_docker }}
     - name: tag latest
